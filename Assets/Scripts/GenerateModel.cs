@@ -5,12 +5,14 @@ using UnityEngine;
 
 public class GenerateModel : MonoBehaviour
 {
-    private Vertex[] _vertices = DataLoadManager.instance.vertices.Vertices;
+    private Vertex[] _vertices;
 
     [SerializeField] private int edgeAmount = 5; 
     [SerializeField] private GameObject edgeObject;
     void Start()
     {
+        _vertices = DrawLineManager.instance.enlargedVerticeList;
+       
         CreateEdges();
     }
 
@@ -40,7 +42,8 @@ public class GenerateModel : MonoBehaviour
             GameObject edgeGo = Instantiate(edgeObject);
             edgeGo.GetComponent<LineManager>().ConnectLines(generatedVertices[i]);
         }
-        
-
     }
+    
+    
+    
 }

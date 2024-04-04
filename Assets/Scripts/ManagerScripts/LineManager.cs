@@ -31,7 +31,7 @@ public class LineManager : MonoBehaviour
         yield return new WaitForEndOfFrame();
         for (int i = 0; i < vertices.Length; i++)
         {
-            lineRenderer.SetPosition(i, new Vector3(vertices[i].x, vertices[i].y, 0));
+            lineRenderer.SetPosition(i, new Vector3(vertices[i].x, vertices[i].y, vertices[i].z));
         }
     }
 }

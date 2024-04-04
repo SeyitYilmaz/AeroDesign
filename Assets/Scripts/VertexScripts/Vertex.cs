@@ -22,6 +22,7 @@ public class Vertex
     {
         Vertex[] Vertices = vertices.Select(v=> new Vertex { x = v.x,
             y = v.y, z = zValue }).ToArray();
+        
         return Vertices;
     }
 }

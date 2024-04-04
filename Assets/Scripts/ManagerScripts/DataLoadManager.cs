@@ -5,6 +5,7 @@ using UnityEngine;
 public class DataLoadManager : MonoBehaviour
 {
     public static DataLoadManager instance { get; private set; }
+    public VertexList vertices;
     void Awake()
     {
         if (instance != null)
@@ -15,7 +16,6 @@ public class DataLoadManager : MonoBehaviour
         instance = this;
         LoadVertexData();
     }
-    public VertexList vertices = new VertexList();
 
     private void LoadVertexData()
     {

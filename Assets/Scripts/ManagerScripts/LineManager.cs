@@ -5,16 +5,16 @@ using UnityEngine;
 public class LineManager : MonoBehaviour
 {
     private LineRenderer lineRenderer;
-    public VertexList vertices;
+    public Vertex[] vertices;
 
     private void Awake()
     {
         lineRenderer = GetComponent<LineRenderer>();
     }
 
-    public void ConnectLines(VertexList vertices)
+    public void ConnectLines(Vertex[] vertices)
     {
-        lineRenderer.positionCount = vertices.Vertices.Length;
+        lineRenderer.positionCount = vertices.Length;
         this.vertices = vertices;
         StartCoroutine(WaitForEndOfFrame());
     }
@@ -29,9 +29,9 @@ public class LineManager : MonoBehaviour
     private IEnumerator WaitForEndOfFrame()
     {
         yield return new WaitForEndOfFrame();
-        for (int i = 0; i < vertices.Vertices.Length; i++)
+        for (int i = 0; i < vertices.Length; i++)
         {
-            lineRenderer.SetPosition(i, new Vector3(vertices.Vertices[i].x, vertices.Vertices[i].y, 0));
+            lineRenderer.SetPosition(i, new Vector3(vertices[i].x, vertices[i].y, 0));
         }
     }
 }

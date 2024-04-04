@@ -10,16 +10,12 @@ public class DrawLineManager : MonoBehaviour
     [SerializeField] LineManager lineManager;
     void Start()
     {
-        VertexList vertexList = DataLoadManager.instance.vertices;
-        Vertex startVertex = vertexList.Vertices[0];
-        int length = vertexList.Vertices.Length;
+        Vertex[] vertexList = DataLoadManager.instance.vertices.Vertices;
+        Vertex startVertex = vertexList.ElementAt(0);
+        int length = vertexList.Length;
 
         //Enlarged Vertices
-        VertexList enlargedVerticeList = new VertexList
-        {
-            Vertices = vertexList.Vertices.Select(v=> new Vertex { x = v.x * multiplierValue,
-            y = v.y * multiplierValue}).ToArray()
-        };
+        Vertex[] enlargedVerticeList = Vertex.CreateEnlargedVertices(vertexList, multiplierValue);
 
         lineManager.GetComponent<LineManager>().ConnectLines(enlargedVerticeList);
     }

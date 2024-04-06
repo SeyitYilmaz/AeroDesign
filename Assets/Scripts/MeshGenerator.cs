@@ -9,10 +9,10 @@ public class MeshGenerator : MonoBehaviour
     [SerializeField] private Vertex[] vertices;
     [SerializeField] private Vertex[] allVertices;
     [SerializeField] private int[] triangles;
-
     [SerializeField] private int edgeAmount = 5; 
     [SerializeField] private GameObject edgeObject;
     private List<Vertex[]> generatedVertices;
+    private int totalVertexCount = 0;
     
 
     private Mesh planeMesh;
@@ -27,12 +27,9 @@ public class MeshGenerator : MonoBehaviour
     {
         vertices = DrawLineManager.instance.enlargedVerticeList;
         allVertices = new Vertex[(vertices.Length+1) * (edgeAmount+1)];
+        totalVertexCount = vertices.Length * edgeAmount;
         triangles = new int[edgeAmount * vertices.Length * 6];
         CreateEdges();
-    }
-
-    void Update()
-    {
         ConnectVertices();
     }
 
@@ -57,8 +54,8 @@ public class MeshGenerator : MonoBehaviour
             }
         }
 
-        Vector3[] allMeshVertices = new Vector3[allVertices.Length];
-        for (int i = 0; i < allVertices.Length; i++)
+        Vector3[] allMeshVertices = new Vector3[allVertices.Length + 1];
+        for (int i = 0; i < totalVertexCount; i++)
         {
             allMeshVertices[i] = new Vector3(allVertices[i].x, allVertices[i].y, allVertices[i].z);
         }
